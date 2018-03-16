@@ -1,30 +1,30 @@
 // Grab the articles as a json
-// var getArticles = $.get("/articles", function(data) {
-//   console.log("success connecting...this is the /articles section in app.js");
-//   // For each one
-//   for (var i = 0; i < data.length; i++) {
-//     // Display the apropos information on the page
-//     $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].summary + "</p>");
-//   }
-// })    
-//   .done(function() {
-//     console.log("second success connecting from /articles section in app.js");
-//   })
-//   .fail(function() {
-//     console.log("error in /articles section in app.js");
-//   })
-//   .always(function() {
-//     console.log("complete");
-//   });
+var getArticles = $.get("/articles", function(data) {
+  console.log("success connecting...this is the /articles section in app.js");
+  // For each one
+  for (var i = 0; i < 10; i++) {
+    // Display the apropos information on the page
+    $("#articles").prepend("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].summary + "</p>");
+    console.log("this is the for loop");
+  }
+})    
+  .done(function() {
+    console.log("second success connecting from /articles section in app.js");
+  })
+  .fail(function() {
+    console.log("error in /articles section in app.js");
+  })
+  .always(function() {
+    console.log("complete");
+  });
 
-//   getArticles.complete(function () {
-//     console.log("second complete");
-//   });
+  // getArticles.complete(function () {
+  //   console.log("second complete");
+  // });
 
 
 // Whenever someone clicks a p tag
 $(document).on("click", "p", function() {
-  console.log("this is the click p tag section running in app.js");
   // Empty the notes from the note section
   $("#notes").empty();
   // Save the id from the p tag
