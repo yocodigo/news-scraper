@@ -7,19 +7,16 @@ var Comments = require("../models/comments.js");
 
 module.exports = function (app) {
 
-    app.get('/', function (req, res) {
-      res.redirect('/articles');
-    });
     /*=====================================================================*/
     app.get("/scrape", function(req, res) {
-        request("https://www.npr.org/sections/news/", function(req, res, html) {
+        request("https://www.npr.org", function(req, res, html) {
             var $ = cheerio.load(html);
             
             $(".item-info").each(function(i, element) {
                 var result = {};
-
-                result.link = $(this).find("h2.title").find("a").attr("href");
-                result.title = $(this).find("h2.title").find("a").text();
+                if ($(this).children(".teaser")) {
+                    result.link = $(this).children("h2.title").children("a").attr("href");
+                result.title = $(this).children("h2.title").children("a").text();
                 result.summary = $(this).children(".teaser").text();
                 
                 Article.create(result, function (err, doc) {
@@ -31,13 +28,14 @@ module.exports = function (app) {
                       console.log("Article object created");
                     }
                   });
+                }
             });
         });
-        res.redirect("/articles");
+        res.redirect("/");
     });
 
     /*=====================================================================*/
-    app.get("/articles", function(req, res) {
+    app.get("/", function(req, res) {
         Article.find({}, function (error, doc) {
             // Log any errors
             if (error) {
@@ -48,8 +46,18 @@ module.exports = function (app) {
             }
             //Will sort the articles by most recent (-1 = descending order)
           })
-          .sort({'_id': -1});
+          .sort({'_id': 1});
     });
+
+    app.get("/articles", function(req, res) {
+        Article.find({}) 
+            .then(function(dbArticles) {
+                res.json(dbArticle);
+            })
+            .catch(function(err) {
+                res.json(err);
+            });    
+    });    
 
     app.get("/articles/:id", function(req, res) {
         Article.findOne({_id: req.params.id})

@@ -1,10 +1,58 @@
-body { background-color: #F2F6D0 }
+body {
+    background: radial-gradient(#ffffff, #ffffff, #929291);
+  }
+.jumbotron {
+    background: url(http://www.wallpaperbetter.com/wallpaper/153/442/445/still-life-wooden-table-glasses-newspaper-coffee-2K-wallpaper.jpg);
+    font-family: Roboto;
+    font-weight: 500;
+    background-size: 1600px 600px;
+    height: 600px;
+}
+h1 {
+    font-size: 4em !important;
+}
+html, body {
+    width: 100%;
+}
+.container-fluid{
+    margin-left: 0px;
+    width: 100%;
+    margin: 0px 0px;
+}
+.nav-link:link {
+    color: black;
+}
+.nav > li > a:hover{
+    background-color: #875C4D;
+}
+.nav {
+    margin-top: 30px;
+}
+.navbar-brand {
+    float: left;
+    margin: 30px 0px;
+}
+li {
+    font
+}
 #wrapper {
 width: 960px;
 margin-left: auto;
 margin-right: auto;
 padding-top: 5%;
 }
+
+.navbar {
+    background-image: linear-gradient(to top, #875C4D 0%, #ab8c82 100%);
+}
+.card {
+    width: 75%;
+    margin: auto;
+}
+h4 {
+    background: linear-gradient(to right,#ab8c82, white);
+}
+
 #articles {
 display: inline-block;
 overflow: auto;

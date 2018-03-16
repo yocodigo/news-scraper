@@ -1,20 +1,32 @@
-<div class="container">
-    <div class="header clearfix">
-        <nav>
-            <ul class="nav nav-pills float-right">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-        </nav>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/scrape">Mongo Scraper</a>
     </div>
 
-    <div class="jumbotron">
-        <h1 class="jumboheader">NPR News Feed</h1>
-        {{!-- <p class="lead">Scrape NPR for the latest articles</p> --}}
-        <p><a class="btn btn-lg btn-success" href="/scrape" role="button">Fetch the latest !</a></p>
-    </div>
+    <ul class="nav nav-custom">
+        <li class="nav-item">
+            <a class="nav-link active" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/articles">Saved Articles</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/scrape">Scrape New Articles!</a>
+        </li>
+    </ul>
 
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+    <div class="overlay"></div>
+    <div class="background-image"></div>
+    <div class="caption">
+        <h1>NPR News Feed</h1>
+    </div>
+</div>
     {{!--News Cards--}} {{!--Iterate through the results and populate the handlebars injection points with the scraped titles,
     links, and article snippets.--}} {{#each result}}
     <div class="card news-section">
@@ -24,21 +36,14 @@
         <div class="card-block">
             
             <h4 class="card-title"></h4>
-            </a>
             <a href="{{this.link}}">
                 <p class="card-text">{{this.summary}}</p>
             </a>
+            <div id="notes"></div>
             <br>
             <a href="/articles/{{this._id}}" class="btn btn-primary">Comment</a>
         </div>
     </div>
     <br>
     <br> {{/each}}
-
-
-
-    <footer class="footer">
-        <p>Joel Hernandez 2018</p>
-    </footer>
-
 </div>
